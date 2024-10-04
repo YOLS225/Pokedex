@@ -37,8 +37,6 @@ export function SortButton({ value, onChange }: Props) {
         setVisible(false);
     }
 
-    console.log("***********************************:", position?.top, position?.right);
-
     return (
         <>
             <Pressable onPress={onButtonPress}>
@@ -53,7 +51,7 @@ export function SortButton({ value, onChange }: Props) {
             <Modal transparent visible={isVisible} onRequestClose={onClose}>
                 <Pressable style={styles.backdrop} onPress={onClose} />
                 {position && (
-                    <View
+                    <View 
                         style={[styles.popup, { backgroundColor: colors.tint, top: position.top, right: position.right }]}>
                         <ThemeText style={styles.title} variant="subtitle2" color="grayWhite">
                             SORT BY :
