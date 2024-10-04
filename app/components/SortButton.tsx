@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     backdrop: {
         flex: 1,
-        backgroundColor: "hsla(0, 100%, 50%, 0.5)"
+        backgroundColor: "hsla(100, 20%, 30%, 0.3)"
     },
     popup: {
         position: 'absolute',
