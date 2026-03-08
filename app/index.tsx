@@ -14,7 +14,7 @@ import { SortButton } from "./components/SortButton";
 
 export default function Index() {
   const colors = useThemeColors();
-  const { data, isFetching, fetchNextPage } = useInfiniteFetchQuery('pokemon?limit=21'); // Correction ici
+  const { data, isFetching, fetchNextPage } = useInfiniteFetchQuery('pokemon?limit=210'); // Correction ici
   const pokemons = data?.pages.flatMap(page => page.results.map(r=>({name:r.name,id:getpokemonId(r.url)}))) ?? [];
   const [search,setSearch] = useState('')
   const [sortKey,setSortKey]=useState<"id"|"name">("id")

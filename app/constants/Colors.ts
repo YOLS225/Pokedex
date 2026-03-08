@@ -25,7 +25,7 @@ export const Colors ={
         fairy:"#E69EAC",
         fighting:"#C12239",
         fire:"#F57D31",
-        flying:"#A8991EC",
+        flying:"#A891EC",
         ghost:"#70559B",
         normal:"#AAA67F",
         grass:"#74CB48",
