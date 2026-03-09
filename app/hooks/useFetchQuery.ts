@@ -37,6 +37,29 @@ export function useFetchQuery<T extends keyof API>(url: T) {
     })
 }
 
+export type PokemonSpecies = {
+    id: number,
+    name: string,
+    base_happiness: number,
+    capture_rate: number,
+    is_legendary: boolean,
+    is_mythical: boolean,
+    genera: { genus: string, language: { name: string } }[],
+    habitat: { name: string } | null,
+    growth_rate: { name: string },
+    flavor_text_entries: { flavor_text: string, language: { name: string } }[],
+}
+
+export function usePokemonSpeciesQuery(id: number | string) {
+    return useQuery({
+        queryKey: ['pokemon-species', id],
+        queryFn: async () => {
+            return fetch(`${endpoint}pokemon-species/${id}`)
+                .then(res => res.json() as Promise<PokemonSpecies>)
+        }
+    })
+}
+
 export function usePokemonQuery(id: number | string) {
     return useQuery({
         queryKey: ['pokemon', id],

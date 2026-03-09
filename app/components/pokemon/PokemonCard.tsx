@@ -16,19 +16,23 @@ export function PokemonCard ({style,id,name}:Props){
         <Pressable android_ripple={{color:colors.tint,foreground:true}} style={{flex:1/3}}>
         <Card style={[styles.card]}>
         <View style={[styles.shadow,{backgroundColor:colors.grayBackground}]}/>
-
-        <ThemeText 
-        variant="caption" 
+        <Image
+            source={require('@/assets/images/pokeball.png')}
+            style={styles.pokeballBg}
+            tintColor={colors.grayLight}
+        />
+        <ThemeText
+        variant="caption"
         color="grayMedium"
         style={styles.id}
         >
         #{id.toString().padStart(3,'0')}
         </ThemeText>
-        <Image 
+        <Image
         width={72}
         height={72}
         source={{uri:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}}/>
-        <ThemeText>{name}</ThemeText>
+        <ThemeText variant="subtitle3">{name}</ThemeText>
     </Card>
         </Pressable>
     </Link>
@@ -39,7 +43,9 @@ const styles=StyleSheet.create({
     card:{
         position:'relative',
         alignItems:'center',
-        padding:4
+        padding:4,
+        paddingBottom:8,
+        gap:4,
     },
     id:{
         alignSelf:'flex-end'
@@ -51,5 +57,13 @@ const styles=StyleSheet.create({
         right:0,
         height:44,
         borderRadius:7
+    },
+    pokeballBg:{
+        position:'absolute',
+        bottom:4,
+        right:4,
+        width:64,
+        height:64,
+        opacity:0.15,
     }
 })

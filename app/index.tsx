@@ -23,10 +23,17 @@ export default function Index() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.tint }]}>
-      <Row style={styles.header} gap={16}>
-        <Image source={require('@/assets/images/pokeball.png')} width={24} height={24} tintColor={'white'} />
-        <ThemeText variant="headline" color="grayLight">POKEDEX</ThemeText>
-      </Row>
+      <View style={styles.headerContainer}>
+        <Image
+          source={require('@/assets/images/pokeball.png')}
+          style={styles.headerPokeball}
+          tintColor="white"
+        />
+        <Row style={styles.header} gap={16}>
+          <Image source={require('@/assets/images/pokeball.png')} width={24} height={24} tintColor={'white'} />
+          <ThemeText variant="headline" color="grayLight">POKEDEX</ThemeText>
+        </Row>
+      </View>
 
       <Row gap={16}>
           <SearchBar value={search} onChange={setSearch}/>
@@ -57,13 +64,24 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 4,
   },
+  headerContainer: {
+    overflow: 'hidden',
+  },
+  headerPokeball: {
+    position: 'absolute',
+    right: -40,
+    top: -40,
+    width: 200,
+    height: 200,
+    opacity: 0.15,
+  },
   header: {
     paddingHorizontal: 12,
-    paddingVertical:8
+    paddingVertical: 12,
   },
   body: {
     flex: 1,
-    marginTop:16
+    marginTop: 16,
   },
   gridGap: {
     gap: 8

@@ -24,9 +24,11 @@ export function SearchBar({value,onChange}:Props){
         height={16} 
         tintColor={colors.tint}
        />
-        <TextInput 
-        onChangeText={onChange} 
+        <TextInput
+        onChangeText={onChange}
         value={value}
+        placeholder="Name or Number"
+        placeholderTextColor={colors.grayMedium}
         style={styles.input}
         />
     </Row>
@@ -43,8 +45,8 @@ const styles = StyleSheet.create({
     },
     input:{
         flex:1,
-        height:16,
-        lineHeight:16,
-        fontSize:10
+        height:20,
+        lineHeight:20,
+        fontSize:12,
     }
 }) 

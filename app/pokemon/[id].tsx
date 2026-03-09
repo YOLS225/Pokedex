@@ -1,9 +1,11 @@
 import { View, Image, StyleSheet, ScrollView, Pressable, ActivityIndicator } from "react-native";
-import {useLocalSearchParams, router, useRouter} from "expo-router";
+import {useLocalSearchParams, useRouter} from "expo-router";
 import { usePokemonQuery } from "../hooks/useFetchQuery";
 import { ThemeText } from "../components/ThemeText";
 import { Colors } from "../constants/Colors";
 import { Row } from "../components/Row";
+import { PokemonTabs } from "../components/pokemon/PokemonTabs";
+import { PokemonCryButton } from "../components/pokemon/PokemonCryButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
 
@@ -73,7 +75,7 @@ export default function Pokemon() {
                 bounces={false}
             >
                 <View style={styles.card}>
-                    {/* Types */}
+                    {/* Types + Cry */}
                     <Row gap={8} style={styles.typesRow}>
                         {data.types.map(({ type }) => (
                             <View
@@ -85,23 +87,11 @@ export default function Pokemon() {
                                 </ThemeText>
                             </View>
                         ))}
+                        <PokemonCryButton pokemonName={data.name} color={bgColor} />
                     </Row>
 
-                    {/* About */}
-                    <ThemeText variant="subtitle1" style={[styles.sectionTitle, { color: bgColor }]}>
-                        About
-                    </ThemeText>
-                    <Row style={styles.physicalRow}>
-                        <View style={styles.physicalItem}>
-                            <ThemeText variant="subtitle2">⚖️  {data.weight / 10} kg</ThemeText>
-                            <ThemeText variant="caption" color="grayMedium">Weight</ThemeText>
-                        </View>
-                        <View style={styles.divider} />
-                        <View style={styles.physicalItem}>
-                            <ThemeText variant="subtitle2">📏  {data.height / 10} m</ThemeText>
-                            <ThemeText variant="caption" color="grayMedium">Height</ThemeText>
-                        </View>
-                    </Row>
+                    {/* Tabs */}
+                    <PokemonTabs id={data.id} active="stats" color={bgColor} />
 
                     {/* Stats */}
                     <ThemeText variant="subtitle1" style={[styles.sectionTitle, { color: bgColor }]}>
@@ -128,7 +118,7 @@ export default function Pokemon() {
             </ScrollView>
 
             {/* Pokemon image – rendu en dernier pour apparaître au-dessus */}
-            <View style={[styles.pokemonImageWrapper, { top: imageTop }]}>
+            <View style={[styles.pokemonImageWrapper, { top: imageTop }]} pointerEvents="none">
                 <Image
                     source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png` }}
                     style={styles.pokemonImage}
@@ -200,24 +190,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 12,
     },
-    physicalRow: {
-        alignSelf: 'stretch',
-        marginBottom: 20,
-        paddingVertical: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: '#E0E0E0',
-    },
-    physicalItem: {
-        flex: 1,
-        alignItems: 'center',
-        gap: 6,
-    },
-    divider: {
-        width: 1,
-        height: 44,
-        backgroundColor: '#E0E0E0',
-    },
-    statRow: {
+statRow: {
         alignSelf: 'stretch',
         alignItems: 'center',
         marginBottom: 10,
